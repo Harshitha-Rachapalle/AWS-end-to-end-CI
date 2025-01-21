@@ -9,12 +9,10 @@ phases:
   install:
     runtime-versions:
       python: 3.11
-pre_build:
-  commands:
-    - echo "DOCKER_REGISTRY_URL: \"$DOCKER_REGISTRY_URL\""
-    - echo "DOCKER_REGISTRY_USERNAME: \"$DOCKER_REGISTRY_USERNAME\""
-    - echo "Installing dependencies..."
-    - pip install -r simple-python-project/requirements.txt
+  pre_build:
+    commands:
+     - echo "Installing dependencies..."
+     - pip install -r simple-python-project/requirements.txt
   build:
     commands:
       - echo "Running tests..."
@@ -30,5 +28,3 @@ artifacts:
   files:
     - '**/*'
   base-directory: ../simple-python-app
-
-
