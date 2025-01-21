@@ -5,15 +5,16 @@ env:
     DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
     DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
     DOCKER_REGISTRY_URL: /myapp/docker-credentials/url
-
 phases:
   install:
     runtime-versions:
       python: 3.11
-  pre_build:
-    commands:
-      - echo "Installing dependencies..."
-      - pip install -r simple-python-project/requirements.txt
+pre_build:
+  commands:
+    - echo "DOCKER_REGISTRY_URL: \"$DOCKER_REGISTRY_URL\""
+    - echo "DOCKER_REGISTRY_USERNAME: \"$DOCKER_REGISTRY_USERNAME\""
+    - echo "Installing dependencies..."
+    - pip install -r simple-python-project/requirements.txt
   build:
     commands:
       - echo "Running tests..."
@@ -29,3 +30,5 @@ artifacts:
   files:
     - '**/*'
   base-directory: ../simple-python-app
+
+
